@@ -88,14 +88,17 @@ def create_app() -> FastAPI:
     app.add_middleware(SecurityHeadersMiddleware)
 
     # ── Static files ─────────────────────────────────────────────────────────
-    Path("static/generated_audio").mkdir(parents=True, exist_ok=True)
-    app.mount("/static", StaticFiles(directory="static"), name="static")
+    # Use an absolute path anchored to this file so the app works regardless
+    # of the CWD when uvicorn is started (e.g. from the project root).
+    _static_dir = Path(__file__).resolve().parent / "static"
+    _static_dir.joinpath("generated_audio").mkdir(parents=True, exist_ok=True)
+    app.mount("/static", StaticFiles(directory=str(_static_dir)), name="static")
 
     # ── Root page ─────────────────────────────────────────────────────────────
     @app.get("/", response_class=HTMLResponse, include_in_schema=False)
     async def index() -> HTMLResponse:
         """Serve the static landing page at the application root."""
-        html_path = Path("static/index.html")
+        html_path = _static_dir / "index.html"
         return HTMLResponse(content=html_path.read_text(encoding="utf-8"))
 
     # ── Routers ──────────────────────────────────────────────────────────────
