@@ -15,7 +15,7 @@ from typing import AsyncIterator
 import uvicorn
 from fastapi import FastAPI, Request
 from fastapi.exceptions import RequestValidationError
-from fastapi.responses import JSONResponse
+from fastapi.responses import HTMLResponse, JSONResponse
 from fastapi.staticfiles import StaticFiles
 
 from app.core.config import get_settings
@@ -90,6 +90,13 @@ def create_app() -> FastAPI:
     # ── Static files ─────────────────────────────────────────────────────────
     Path("static/generated_audio").mkdir(parents=True, exist_ok=True)
     app.mount("/static", StaticFiles(directory="static"), name="static")
+
+    # ── Root page ─────────────────────────────────────────────────────────────
+    @app.get("/", response_class=HTMLResponse, include_in_schema=False)
+    async def index() -> HTMLResponse:
+        """Serve the static landing page at the application root."""
+        html_path = Path("static/index.html")
+        return HTMLResponse(content=html_path.read_text(encoding="utf-8"))
 
     # ── Routers ──────────────────────────────────────────────────────────────
     app.include_router(health_router)
