@@ -1,23 +1,23 @@
-# 🏦 Multilingual Banking TTS System
+# Multilingual Banking TTS System
 
 A **FastAPI**-powered text-to-speech service that generates spoken queue announcements for banking environments. Supports **5 languages** with neural voices via Microsoft Edge-TTS.
 
 ---
 
-## ✨ Features
+## Features
 
-- 🌐 **5 languages** — English, Bangla, Japanese, German, Spanish
-- 🎙 **Neural voices** — male & female options per language (Microsoft Edge-TTS)
-- ⚙ **Prosody control** — configurable speech rate, pitch, and volume
-- ⚡ **Async MP3 generation** — non-blocking synthesis with instant audio URL
-- 🧹 **Auto-cleanup** — generated audio files expire after a configurable TTL
-- 🛡 **Rate limiting** — per-IP request throttling via SlowAPI
-- 📄 **Interactive UI** — built-in web demo at `http://127.0.0.1:8000/`
-- 📖 **Auto docs** — Swagger UI at `/docs`, ReDoc at `/redoc`
+- **5 languages** — English, Bangla, Japanese, German, Spanish
+- **Neural voices** — male & female options per language (Microsoft Edge-TTS)
+- **Prosody control** — configurable speech rate, pitch, and volume
+- **Async MP3 generation** — non-blocking synthesis with instant audio URL
+- **Auto-cleanup** — generated audio files expire after a configurable TTL
+- **Rate limiting** — per-IP request throttling via SlowAPI
+- **Interactive UI** — built-in web demo at `http://127.0.0.1:8000/`
+- **Auto docs** — Swagger UI at `/docs`, ReDoc at `/redoc`
 
 ---
 
-## 🗂 Project Structure
+## Project Structure
 
 ```
 Multilingual-TTS-System/
@@ -42,7 +42,7 @@ Multilingual-TTS-System/
 
 ---
 
-## 🚀 Quick Start
+## Quick Start
 
 ### 1. Clone & install
 
@@ -72,7 +72,7 @@ Open **http://127.0.0.1:8000/** in your browser.
 
 ---
 
-## 🔌 API Reference
+## API Reference
 
 ### Generate Announcement
 
@@ -130,26 +130,8 @@ Content-Type: application/json
 
 ---
 
-## ⚙ Configuration (`.env`)
 
-| Variable | Default | Description |
-|----------|---------|-------------|
-| `APP_NAME` | `Banking TTS System` | Application name |
-| `APP_VERSION` | `1.0.0` | Version string |
-| `DEBUG` | `true` | Enable debug mode & auto-reload |
-| `HOST` | `0.0.0.0` | Bind address |
-| `PORT` | `8000` | Bind port |
-| `ALLOWED_ORIGINS` | `["http://localhost:8000", ...]` | CORS origins |
-| `AUDIO_OUTPUT_DIR` | `static/generated_audio` | MP3 output directory |
-| `AUDIO_TTL_SECONDS` | `300` | Audio file lifetime (seconds) |
-| `DEFAULT_VOICE_GENDER` | `female` | Fallback voice gender |
-| `DEFAULT_SPEECH_RATE` | `1.0` | Fallback speech rate |
-| `LOG_LEVEL` | `INFO` | Logging level |
-| `RATE_LIMIT_PER_MINUTE` | `30` | Max requests per IP per minute |
-
----
-
-## 🧪 Running Tests
+## Running Tests
 
 ```bash
 pytest tests/ -v
@@ -157,7 +139,7 @@ pytest tests/ -v
 
 ---
 
-## 🛠 Tech Stack
+## Tech Stack
 
 - **[FastAPI](https://fastapi.tiangolo.com/)** — async web framework
 - **[Edge-TTS](https://github.com/rany2/edge-tts)** — Microsoft neural TTS (no API key required)
@@ -167,6 +149,6 @@ pytest tests/ -v
 
 ---
 
-## 📄 License
+## License
 
 MIT
